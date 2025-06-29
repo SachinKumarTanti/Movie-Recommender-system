@@ -6,6 +6,8 @@ import pandas as pd
 import requests
 from huggingface_hub import hf_hub_download
 
+API_KEY = st.secrets["OMDB_API_KEY"]
+
 file_path = hf_hub_download(
     repo_id="MrSachin06/similarity",
     filename="similarity.pkl",
@@ -65,7 +67,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def fetch_poster(movie):
-    response = requests.get('https://www.omdbapi.com/?apikey=<your-api-key>&t={}'.format(movie))
+    response = requests.get('https://www.omdbapi.com/?apikey={API_KEY}>&t={}'.format(movie))
     data = response.json()
     print(data)
     if data.get('Response') == 'True' and data.get('Poster') != 'N/A':
