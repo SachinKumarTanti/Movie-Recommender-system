@@ -4,7 +4,13 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+from huggingface_hub import hf_hub_download
 
+file_path = hf_hub_download(
+    repo_id="MrSachin06/similarity",
+    filename="similarity.pkl",
+    repo_type="dataset"
+)
 
 st.set_page_config(page_title="Movie Recommender", layout="wide")
 
@@ -67,7 +73,7 @@ def fetch_poster(movie):
     else:
       return "https://thumbs.dreamstime.com/b/no-image-available-icon-177641087.jpg"
 
-similarity = pickle.load(open('similarity.pkl','rb'))
+similarity = pickle.load(open(file_path,'rb'))
 movies_dict = pickle.load(open('movie_dict.pkl','rb'))
 movies = pd.DataFrame(movies_dict)
 
