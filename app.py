@@ -66,10 +66,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-def fetch_poster(movie):
-    response = requests.get('https://www.omdbapi.com/?apikey={API_KEY}>&t={}'.format(movie))
+def fetch_poster(movie,api):
+    response = requests.get('https://www.omdbapi.com/?apikey={}>&t={}'.format(api,movie))
     data = response.json()
-    print(data)
+    
     if data.get('Response') == 'True' and data.get('Poster') != 'N/A':
             return data['Poster']
     else:
@@ -82,13 +82,13 @@ movies = pd.DataFrame(movies_dict)
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
     distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[0:32]
+    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[0:12]
 
     recommended_movies = []
     recommended_movies_posters = []
     for i in movies_list:
         recommended_movies.append(movies.iloc[i[0]].title)
-        recommended_movies_posters.append(fetch_poster(movies.iloc[i[0]].title))
+        recommended_movies_posters.append(fetch_poster(movies.iloc[i[0]].title,API_KEY))
     return recommended_movies, recommended_movies_posters
 
 
