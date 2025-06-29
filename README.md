@@ -1,7 +1,7 @@
 # Movie-Recommender-system
  A content-based movie recommender system built with Streamlit. It suggests similar movies  and fetches real-time thumbnails
 
-🌐 **Live Demo**: [Click here to try it](https://your-username.streamlit.app/)  
+🌐 **Live Demo**: [Click here to try it](https://movie-recommender-sachin.streamlit.app/) 
 📽️ **Created by**: Sachin Kumar Tanti
 ---
 
