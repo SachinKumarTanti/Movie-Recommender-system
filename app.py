@@ -59,7 +59,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def fetch_poster(movie):
-    response = requests.get('https://www.omdbapi.com/?apikey=aa13f888&t={}'.format(movie))
+    response = requests.get('https://www.omdbapi.com/?apikey=<your-api-key>&t={}'.format(movie))
     data = response.json()
     print(data)
     if data.get('Response') == 'True' and data.get('Poster') != 'N/A':
