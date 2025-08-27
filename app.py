@@ -114,8 +114,18 @@ if st.button("Recommend"):
             for j in range(4):
                 if i + j < len(names):
                     with cols[j]:
-                        st.image(poster[i + j], use_container_width=True)
-                        st.caption(names[i + j])
+                        # Create a clickable image + title
+                        movie_search_url = f"https://www.google.com/search?q={names[i+j].replace(' ', '+')}"
+                        st.markdown(
+                            f"""
+                            <a href="{movie_search_url}" target="_blank" style="text-decoration: none; color: white;">
+                                <img src="{poster[i+j]}" style="width:100%; border-radius:10px;" />
+                                <p style="text-align:center; margin-top:5px;">{names[i+j]}</p>
+                            </a>
+                            """,
+                            unsafe_allow_html=True
+                        )
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
